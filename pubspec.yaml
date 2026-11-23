@@ -1,0 +1,43 @@
+name: mikasa
+description: "Mikasa — قارئ PDF يركّز على القراءة الفعّالة: تظليل النصوص، حفظ الاقتباسات، والعودة إليها بضغطة واحدة. يعمل دون اتصال بالإنترنت."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.9.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # الترجمات الرسمية (دعم اتجاه RTL ونصوص Material المحلية)
+  flutter_localizations:
+    sdk: flutter
+
+  # --- عرض PDF + نظام التظليل (Annotations) ---
+  # الحزم الثلاث من نفس الإصدار حتى تبقى متوافقة تماماً.
+  syncfusion_flutter_pdfviewer: ^35.2.12   # العارض نفسه (تمرير عمودي، تكبير، تحديد نص، Annotations)
+  syncfusion_flutter_pdf: ^35.2.12         # قراءة عدد الصفحات والتحقق من صلاحية الملف
+  syncfusion_flutter_core: ^35.2.12        # التسجيل/الترخيص المشترك
+
+  # اختيار ملفات PDF من ذاكرة الهاتف
+  file_picker: ^13.4.1
+
+  # قاعدة البيانات المحلية (بدون كود توليد: نستخدم Adapters مكتوبة يدوياً)
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  path_provider: ^2.1.6
+  path: ^1.9.1
+  crypto: ^3.0.8          # بصمة (hash) ثابتة لملف PDF لاستخدامها معرّفاً للكتاب
+  provider: ^6.1.5        # إدارة الحالة
+  go_router: ^18.1.4      # التوجيه
+  share_plus: ^13.3.1     # مشاركة الاقتباسات كنص
+  intl: ^0.20.3           # تنسيق التواريخ
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,28 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+  errors:
+    # التعليقات التوثيقية بالعربية مقبولة، لا نُحوّلها إلى أخطاء.
+    public_member_api_docs: ignore
+    # نستخدم واجهة `package:flutter/material.dart` المستقرة والمتوافقة مع كل
+    # إصدارات Flutter، بينما إصدارات Flutter ≥ 3.47 تُظهر تنبيهاً استباقياً
+    # باقتراح حزمة material_ui الجديدة. التنبيه معلوماتي فقط ولا يؤثر على البناء.
+    deprecated_member_use: ignore
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    always_declare_return_types: true
+    unawaited_futures: true
+    avoid_print: true

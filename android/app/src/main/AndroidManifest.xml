@@ -1,0 +1,54 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+      صلاحيات التطبيق:
+      1) READ_EXTERNAL_STORAGE: مطلوبة فقط على أندرويد 12 (API 32) وما قبله،
+         لأن منتقي الملفات (file_picker) يستخدم Storage Access Framework الذي
+         لا يحتاج صلاحية على الإصدارات الأحدث.
+      2) MANAGE_EXTERNAL_STORAGE: غير مطلوبة لعمل التطبيق (كل الملفات تُنسخ إلى
+         مساحة التطبيق الخاصة). فعّلها فقط إذا أردت تصفّح كل مجلدات الهاتف،
+         وتذكّر أن Google Play تطلب تبريراً لاستخدامها. أزل التعليق عن السطر
+         التالي إن كنت تحتاجها فعلاً.
+    -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> -->
+
+    <application
+        android:label="Mikasa"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- يظهر هذا الثيم أثناء إقلاع التطبيق قبل بناء واجهة Flutter. -->
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+              />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- لا تحذف هذا السطر: يستخدمه Flutter لتوليد GeneratedPluginRegistrant. -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+
+    <!-- لازمة لعمل ProcessTextPlugin في محرك Flutter (نسخ/لصق النصوص). -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+</manifest>
